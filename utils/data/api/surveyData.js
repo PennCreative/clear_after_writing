@@ -32,7 +32,7 @@ const createSurvey = (surveyObj) => new Promise((resolve, reject) => {
 });
 
 const updateSurvey = (surveyObj, id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/survey/${id}`, {
+  fetch(`${dbUrl}/surveys/${id}`, {
     method: 'PUT',
     body: JSON.stringify(surveyObj),
     headers: {

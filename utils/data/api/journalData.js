@@ -31,7 +31,7 @@ const createJournal = (journalObj) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 const updateJournal = (journalObj, id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/journal/${id}`, {
+  fetch(`${dbUrl}/journals/${id}`, {
     method: 'PUT',
     body: JSON.stringify(journalObj),
     headers: {

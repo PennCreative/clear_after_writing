@@ -57,7 +57,7 @@ export default function ProfileForm({ user, onUpdate }) {
       registerUser(userData).then(() => onUpdate(user.id));
     }
   };
-  console.log(user);
+
   return (
     <div onSubmit={handleSubmit} className="card cardForm text-center text-dark bg-light mb-3">
       <div className="card-header">

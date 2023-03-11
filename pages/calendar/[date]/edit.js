@@ -32,7 +32,7 @@ export default function DateEntry() {
   useEffect(() => {
     getData();
   }, [router]);
-  console.log(journal, questions);
+
   return (
     <>
       {questions.map((question) => (

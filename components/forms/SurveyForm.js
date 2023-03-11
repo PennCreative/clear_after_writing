@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -6,15 +7,21 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import PropTypes from 'prop-types';
 import { createSurvey, updateSurvey } from '../../utils/data/api/surveyData';
+import { getJournalByDate } from '../../utils/data/api/journalData';
+import { createStat } from '../../utils/data/api/statData';
 
-export default function SurveyForm({ survey, onUpdate }) {
+export default function SurveyForm({ survey }) {
+  const router = useRouter();
+  const date = router.asPath.split('/')[2];
+  const [journal, setJournal] = useState({});
   const [formInput, setFormInput] = useState({
     id: 0,
     question: '',
-    answer: 5,
+    answer: 0,
   });
 
   useEffect(() => {
+    getJournalByDate(date).then(setJournal);
     if (survey?.id) {
       setFormInput(survey);
     }
@@ -32,20 +39,23 @@ export default function SurveyForm({ survey, onUpdate }) {
     e.preventDefault();
     const surveyData = {
       id: survey.id,
-      question: formInput.question,
+      question: survey.question,
       answer: formInput.answer,
     };
     if (survey.id) {
-      updateSurvey(surveyData, survey.id).then(() => onUpdate(surveyData));
+      updateSurvey(surveyData, survey.id);
     } else {
-      createSurvey(surveyData).then((newSurvey) => onUpdate(newSurvey));
+      createSurvey(surveyData).then((data) => {
+        const payload = { journal: journal[0].id, survey: data.id };
+        createStat(payload).then();
+      });
     }
   };
 
   return (
     <div onSubmit={handleSubmit} className="card cardForm text-center text-dark bg-light mb-3">
       <div className="card-header">
-        {survey?.id ? 'Update' : 'Create' } Survey
+        {survey.id ? 'Update' : 'Create' } Survey
       </div>
       <div className="card-body">
         <Row className="mb-3">
@@ -79,5 +89,4 @@ SurveyForm.propTypes = {
     question: PropTypes.string,
     answer: PropTypes.number,
   }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
 };

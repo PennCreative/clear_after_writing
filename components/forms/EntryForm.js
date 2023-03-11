@@ -8,6 +8,8 @@ import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../utils/context/authContext';
 import { createJournal, updateJournal } from '../../utils/data/api/journalData';
+import { createStat } from '../../utils/data/api/statData';
+import { createSurvey } from '../../utils/data/api/surveyData';
 // import { getJournalsSurvey } from '../../utils/data/api/surveyData';
 
 const initialState = {
@@ -18,18 +20,22 @@ const initialState = {
   distraction: '',
   entry: '',
   significant: false,
-  // questions: [
-  //   { question: 'Rate your productivity', answer: 5 },
-  //   { question: 'Rate your sleep', answer: 5 },
-  //   { question: 'Rate your overall day', answer: 5 },
-  // ],
 };
+
+const initialSurvey = [
+  { question: 'Rate Your Sleep', answer: 0 },
+  { question: 'Rate Your Productivity', answer: 0 },
+  { question: 'Rate Your Overall Day', answer: 0 },
+];
 
 export default function EntryForm({ journal }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
   const today = new Date();
+  const currentMonth = today.getMonth();
+  const currentDate = today.getDate();
+  const format = `2023-${currentMonth + 1}-${currentDate}`;
   // const [surveys, setSurveys] = useState([]);
 
   useEffect(() => {
@@ -57,12 +63,25 @@ export default function EntryForm({ journal }) {
       const payload = {
         ...formInput, writer_id: user.id, date: today,
       };
-      createJournal(payload).then(() => {
-        router.push('/profile');
+      createJournal(payload).then((data) => {
+        initialSurvey.map((surveyData) => {
+          const surveyPayload = {
+            question: surveyData.question,
+            answer: 0,
+          };
+          createSurvey(surveyPayload).then((d2) => {
+            const statPayload = {
+              journal: data.id,
+              survey: d2.id,
+              rating: 0,
+            };
+            createStat(statPayload).then(() => router.push(`/calendar/${format}/rate`));
+          });
+          return console.log(surveyData);
+        });
       });
     }
   };
-
   return (
     <div onSubmit={handleSubmit} className="card cardForm text-center text-dark bg-light mb-3">
       <div className="card-header">
