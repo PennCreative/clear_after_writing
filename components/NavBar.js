@@ -21,7 +21,7 @@ export default function NavBar() {
   const checkIfUserExistsThenRoute = () => {
     getUserById(user.id).then((response) => {
       if (response) {
-        router.push(`/profile/${user.id}`);
+        router.push('/profile');
       } else {
         router.push('/profile/new');
       }
@@ -37,14 +37,8 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link passHref href="/">
-              <Nav.Link>Today&#39;s Entry</Nav.Link>
-            </Link>
             <Link passHref href="/calendar">
-              <Nav.Link>Calendar</Nav.Link>
-            </Link>
-            <Link passHref href="/users">
-              <Nav.Link>Profile</Nav.Link>
+              <p>Calendar</p>
             </Link>
             <li className="nav-item">
               <Button type="button" variant="outline-dark" className="btn navBtn" onClick={() => checkIfUserExistsThenRoute()}>

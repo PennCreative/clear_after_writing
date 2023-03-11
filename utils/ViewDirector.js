@@ -7,7 +7,7 @@ import ProfileForm from '../components/forms/ProfileForm';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
-  console.log(user);
+
   // if user state is null, then show loader
   if (userLoading) {
     return <Loading />;

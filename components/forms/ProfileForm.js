@@ -14,7 +14,7 @@ export default function ProfileForm({ user, onUpdate }) {
   const router = useRouter;
   const current = new Date();
   const date = `${current.getFullYear()}-${current.getMonth()}-${current.getDate()}`;
-  console.warn(date);
+
   const [formInput, setFormInput] = useState({
     id: 0,
     email: '',
@@ -43,7 +43,7 @@ export default function ProfileForm({ user, onUpdate }) {
     e.preventDefault();
     const userData = {
       id: user.id,
-      email: user.fbUser.email,
+      email: user.email,
       uid: user.uid,
       first_name: formInput.first_name,
       last_name: formInput.last_name,
@@ -52,12 +52,12 @@ export default function ProfileForm({ user, onUpdate }) {
     };
     if (user.id) {
       updateUser(userData, user.id)
-        .then(() => router.push(`../../profile/${user.id}`));
+        .then(() => router.push('../../profile'));
     } else {
       registerUser(userData).then(() => onUpdate(user.id));
     }
   };
-
+  console.log(user);
   return (
     <div onSubmit={handleSubmit} className="card cardForm text-center text-dark bg-light mb-3">
       <div className="card-header">
@@ -85,18 +85,6 @@ export default function ProfileForm({ user, onUpdate }) {
           </Form.Group>
 
         </Row>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="city">
-            <Form.Label>City</Form.Label>
-            <Form.Control value={formInput.city} onChange={handleChange} name="city" type="text" placeholder="City" />
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="state">
-            <Form.Label>State</Form.Label>
-            <Form.Control value={formInput.state} onChange={handleChange} name="state" type="text" placeholder="State" />
-          </Form.Group>
-        </Row>
         <ButtonGroup vertical>
           <Button variant="primary" type="submit" onClick={handleSubmit}>
             {user.id ? 'Update' : 'Create'} Profile
@@ -118,6 +106,7 @@ ProfileForm.propTypes = {
   user: PropTypes.shape({
     uid: PropTypes.string,
     id: PropTypes.number,
+    email: PropTypes.string,
     fbUser: PropTypes.shape({
       email: PropTypes.string,
     }),

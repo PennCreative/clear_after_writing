@@ -14,7 +14,7 @@ export default function ViewProfile() {
   const profileDetails = () => {
     getUserById(user.id).then(setUserDetails);
   };
-
+  console.log(user);
   useEffect(() => {
     profileDetails();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,6 +26,9 @@ export default function ViewProfile() {
         <img className="profilePic" src={userDetails?.profile_image_url} alt="profile pic" />
         <div className="userDetailSection">
           <h3>{userDetails?.first_name} {userDetails?.last_name}</h3>
+          <Link href={`/profile/edit/${user.id}`} passHref>
+            <Button variant="primary">EDIT</Button>
+          </Link>
         </div>
       </div>
       <div className="profileRightSide">
