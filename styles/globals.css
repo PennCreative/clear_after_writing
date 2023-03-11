@@ -1,0 +1,44 @@
+.year {
+  width: 100%;
+  padding: .5rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.month {
+  width: 100%;
+  margin: 1rem;
+}
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 1rem;
+}
+.day {
+  height: 10rem;
+  background: lightcyan;
+  border-radius: .5rem;
+  text-align: center;
+}
+.today {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.high-rating {
+  background: lightgreen;
+  width: 100%;
+  height: 25%;
+  border-radius: .25rem;
+}
+.medium-rating {
+  background: lightyellow;
+  width: 100%;
+  height: 25%;
+  border-radius: .25rem;
+}
+.low-rating {
+  background: lightcoral;
+  width: 100%;
+  height: 25%;
+  border-radius: .25rem;
+}
