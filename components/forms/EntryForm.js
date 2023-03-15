@@ -36,6 +36,7 @@ export default function EntryForm({ journal }) {
   const currentMonth = today.getMonth();
   const currentDate = today.getDate();
   const format = `2023-${currentMonth + 1}-${currentDate}`;
+  console.log(format);
   // const [surveys, setSurveys] = useState([]);
 
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function EntryForm({ journal }) {
         .then(() => router.push(`/calendar/${journal.date}`));
     } else {
       const payload = {
-        ...formInput, writer_id: user.id, date: today,
+        ...formInput, writer_id: user.id, date: format,
       };
       createJournal(payload).then((data) => {
         initialSurvey.map((surveyData) => {
