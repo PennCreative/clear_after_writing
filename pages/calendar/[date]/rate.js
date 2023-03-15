@@ -14,13 +14,13 @@ const initialState = [
 export default function DateEntry() {
   const router = useRouter();
   const { user } = useAuth();
-  const [journal, setJournal] = useState();
+  const [journal, setJournal] = useState({});
   const [questions, setQuestions] = useState(initialState);
   const date = router.asPath.split('/')[2];
 
   const getData = () => {
     getJournalByDate(date).then((data) => {
-      setJournal(data[0]);
+      console.log(data);
       getJournalsSurvey(data[0]?.id).then(setQuestions);
     });
   };
@@ -32,7 +32,7 @@ export default function DateEntry() {
   return (
     <>
       {questions?.map((question) => (
-        <SurveyForm key={question.id} survey={question} onUpdate={getData} />
+        <SurveyForm key={question.id} survey={question} journal={journal} onUpdate={getData} />
       ))}
     </>
   );

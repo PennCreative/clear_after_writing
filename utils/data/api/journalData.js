@@ -12,6 +12,11 @@ const getJournalByDate = (date) => new Promise((resolve, reject) => {
     .then((response) => resolve(response.json()))
     .catch((error) => reject(error));
 });
+const getJournalByWriter = (writerId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/journals/writer/?writer_id=${writerId}`)
+    .then((response) => resolve(response.json()))
+    .catch((error) => reject(error));
+});
 
 const getSingleJournal = (id) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/journals/${id}`)
@@ -54,5 +59,5 @@ const deleteJournal = (id) => new Promise((resolve, reject) => {
 });
 
 export {
-  getAllJournals, getSingleJournal, getJournalByDate, createJournal, updateJournal, deleteJournal,
+  getAllJournals, getSingleJournal, getJournalByWriter, getJournalByDate, createJournal, updateJournal, deleteJournal,
 };

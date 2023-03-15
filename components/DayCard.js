@@ -9,6 +9,7 @@ export default function DayCard({
 }) {
   const isToday = format === fullDate;
   const [rating, setRating] = useState();
+
   const getRating = () => {
     getJournalByDate(fullDate).then(setRating);
   };
@@ -27,7 +28,7 @@ export default function DayCard({
   }
 
   return (
-    <div className={ratingClass}>
+    <div className="rating">
       <Button
         variant="link"
         onClick={() => onClick(date)}
