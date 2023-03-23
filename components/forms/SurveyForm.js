@@ -54,10 +54,7 @@ export default function SurveyForm({ survey }) {
 
   return (
     <div onSubmit={handleSubmit} className="card cardForm text-center text-dark bg-light mb-3">
-      <div className="card-header">
-        {survey.id ? 'Update' : 'Create' } Survey
-      </div>
-      <div className="card-body">
+      <div className="card-body surveyForm">
         <Row className="mb-3">
 
           <Form.Group as={Col} controlId="">

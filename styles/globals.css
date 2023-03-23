@@ -1,5 +1,35 @@
-.year {
+@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
+
+.mainPage {
   width: 100%;
+  max-width: 100vw;
+  padding: 0;
+  margin: 0;
+}
+.signInPage {
+  height: 100vh;
+  width: 100vw;
+}
+.signInPage .btn {
+  text-decoration: none;
+  color: #879BAD;
+  margin-top: 20rem;
+  margin-left: 25rem;
+  font-size: 40pt;
+  font-family: 'Sofia', cursive;
+  font-weight: normal;
+}
+.logInPage {
+  background: url('../public/CAW.jpg');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.year {
+  width: 100vw;
   padding: .5rem;
   display: flex;
   flex-flow: column nowrap;
@@ -17,28 +47,152 @@
 }
 .day {
   height: 10rem;
-  background: lightcyan;
+  background: rgba(151, 239, 233, 1);
+  color: rgba(46, 2, 25, 1);
   border-radius: .5rem;
   text-align: center;
+  box-shadow: inset 0 0 10px rgba(46, 2, 25, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .today {
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
 }
-.high-rating {
-  background: lightgreen;
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
   width: 100%;
-  height: 25%;
+  height: 100%;
   border-radius: .25rem;
+  box-shadow: inset 0 0 10px rgba(46, 2, 25, 0.5);
+}
+.rating .btn {
+  text-decoration: none;
+  color: rgba(46, 2, 25, 1);
+}
+.high-rating {
+  background: #A4D4B4;
 }
 .medium-rating {
-  background: lightyellow;
-  width: 100%;
-  height: 25%;
-  border-radius: .25rem;
+  background: #FFCF9C;
 }
 .low-rating {
-  background: lightcoral;
+  background: #CA054D;
+}
+.zero {
+  background: lavender;
+}
+.significant .btn {
+  color: purple;
+}
+.profileContent {
+  height: 100vh;
+  width: 100vw;
+}
+.profileLeftSide {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+.profilePic {
+  height: 30vh;
+  width: 30vw;
+  object-fit: cover;
+  border-radius: 2rem;
+}
+.page {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.tab-pane {
+  text-align: center;
+}
+.userDetailSection {
+  display: flex;
+}
+.homePage {
+  margin: 0;
+  padding: 0;
   width: 100%;
-  height: 25%;
-  border-radius: .25rem;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.panel {
+  box-shadow: inset 0 0 10px rgba(46, 2, 25, 0.5);
+  width: 90vw;
+  height: 75vh;
+  margin: 1rem;
+  padding: 2rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.panel1 {
+  background-image: url(../public/panel1.png);
+}
+.panel2 {
+  background-image: url(../public/panel2.png);
+}
+.panel3 {
+  background-image: url(../public/panel3.png);
+  padding-top: 1rem;
+  padding-left: 4.5rem;
+}
+.panelContent {
+  width: 40%;
+}
+.panelContent h1 {
+  font-family: 'Sofia', cursive;
+  font-size: 50pt;
+  color: rgba(46, 2, 25, 1);
+}
+.navContainer {
+  width: 100vw;
+  padding: .5rem;
+}
+.nav-item {
+  margin-left: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-decoration: none;
+  color:rgba(46, 2, 25, 1);
+}
+.userDetailSection {
+  color:rgba(46, 2, 25, 1);
+}
+.userDetailSection h1 {
+  margin-top: 1rem;
+  font-family: 'Sofia', cursive;
+  color: rgba(46, 2, 25, 1);
+}
+.dailyResults {
+  height: 70vh;
+  width: 100vw;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+.dailyResults .btn {
+  margin: 1rem;
+}
+.entry h3 {
+  font-family: 'Sofia', cursive;
+}
+ul {
+  list-style-type: none;
 }
