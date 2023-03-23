@@ -7,11 +7,10 @@ function Signin() {
   return (
 
     <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
+      className="signInPage"
     >
       <div className="logInPage">
-        <img src="../SeshLogo.png" alt="logo" />
-        <button type="button" className="btn btn-primary btn-lg copy-btn" onClick={signIn}>
+        <button type="button" className="btn btn-link" onClick={signIn}>
           Sign In
         </button>
       </div>

@@ -40,39 +40,53 @@ export default function DateEntry() {
     getData();
   }, [router]);
   return (
-    <>
-      <sup>Date: {date}</sup>
-      <b>
-        <p>Today&#39;s Goal:</p>
-      </b>
-      {journalObj?.id ? (
-        <>
-          <p>{journalObj.goal_entry}</p>
-          <p>Affirmation: {journalObj.affirmation}</p>
-          <p>Journal Entry: {journalObj.entry}</p>
-          <Link href={`/calendar/${date}/edit`} passHref>
-            <Button className="smallBtn" variant="outline-primary">
-              <AiFillEdit />
+    <div className="dailyResults">
+      <div className="entry">
+        <sup>Viewing Entry for {date}</sup>
+        {journalObj?.id ? (
+          <>
+            <h5>Goal:</h5>
+            <ul>
+              <li>
+                <h3><em className="entry">{journalObj.goal_entry}</em></h3>
+              </li>
+            </ul>
+            <h5>Affirmation:</h5>
+            <ul>
+              <li>
+                <h3><em className="entry">{journalObj.affirmation}</em></h3>
+              </li>
+            </ul>
+            <h5>Journal Entry:</h5>
+            <ul>
+              <li>
+                <h3><em className="entry">{journalObj.entry}</em></h3>
+              </li>
+            </ul>
+            <Link href={`/calendar/${date}/edit`} passHref>
+              <Button className="smallBtn" variant="outline-primary">
+                <AiFillEdit />
+              </Button>
+            </Link>
+            <Button
+              className="smallBtn"
+              variant="outline-danger"
+              onClick={deleteThisEntry}
+            >
+              <BsFillTrashFill />
             </Button>
-          </Link>
+          </>
+        ) : (
           <Button
-            className="smallBtn"
-            variant="outline-danger"
-            onClick={deleteThisEntry}
-          >
-            <BsFillTrashFill />
+            variant="primary"
+            type="submit"
+            onClick={() => {
+              router.push('/calendar/new');
+            }}
+          >Create Entry
           </Button>
-        </>
-      ) : (
-        <Button
-          variant="primary"
-          type="submit"
-          onClick={() => {
-            router.push('/calendar/new');
-          }}
-        >Create Entry
-        </Button>
-      )}
-    </>
+        )}
+      </div>
+    </div>
   );
 }

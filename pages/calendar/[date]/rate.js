@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../../utils/context/authContext';
 import { getJournalByDate } from '../../../utils/data/api/journalData';
@@ -34,6 +35,9 @@ export default function DateEntry() {
       {questions?.map((question) => (
         <SurveyForm key={question.id} survey={question} journal={journal} onUpdate={getData} />
       ))}
+      <Link className="nav-item" passHref href="/calendar">
+          <h1>Finished!</h1>
+      </Link>
     </>
   );
 }
